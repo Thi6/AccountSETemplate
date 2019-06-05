@@ -18,8 +18,8 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	
-	private int accountNumber;
+	@Column(length = 100)
+	private String accountNumber;
 	@Column(length = 100)
 	private String firstName;
 	@Column(length = 100)
@@ -29,7 +29,7 @@ public class Account {
 		
 	}
 	
-	public Account(int id, int accountNumber, String firstName, String lastName) {
+	public Account(int id, String accountNumber, String firstName, String lastName) {
 		this.id = id;
 		this.accountNumber = accountNumber;
 		this.firstName = firstName;
@@ -43,10 +43,10 @@ public class Account {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public String getFirstName() {
