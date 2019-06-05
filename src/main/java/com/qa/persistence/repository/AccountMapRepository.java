@@ -1,6 +1,6 @@
 package com.qa.persistence.repository;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,16 +33,16 @@ public class AccountMapRepository implements AccountRepository{
 
 	public String createAccount(String account) {
 		Account theAccount = json.getObjectForJSON(account, Account.class);
-		accountMap.put(theAccount.getAccountNumber(), theAccount);
+		accountMap.put(theAccount.getId(), theAccount);
 		return "Account successfully created.";
 	}
 
 	
 	
-	public String deleteAccount(int accountNumber) {
+	public String deleteAccount(int id) {
 		
-		accountMap.remove(accountNumber);
-		if (accountMap.containsKey(accountNumber)) {
+		accountMap.remove(id);
+		if (accountMap.containsKey(id)) {
 			return "Your account has not been deleted";
 		} else {
 			return  "Your account has been deleted";
@@ -50,7 +50,7 @@ public class AccountMapRepository implements AccountRepository{
 		
 	}
 
-	public String updateAccount(int accountNumber, String account) {
+	public String updateAccount(int id, String account) {
 		
 		return null;
 	}
@@ -70,7 +70,7 @@ public class AccountMapRepository implements AccountRepository{
 		
 		for (Account anAcc : accountList) {
 			if (anAcc.getFirstName().equals(firstName)) {
-				counter ++;
+				counter++;
 			}
 		}
 		

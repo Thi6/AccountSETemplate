@@ -22,12 +22,12 @@ public class AccountServiceTest {
 	public void setup() {
 		amr = new AccountMapRepository();
 		json = new JSONUtil();
-		myAccount = new Account(1, 1, "Matt", "Hunt");
-		myAccount2 = new Account(2, 2, "Jane", "Fern");
-		myAccount3 = new Account(3, 3, "Matt", "Harris");
+		myAccount = new Account(1, "1", "Matt", "Hunt");
+		myAccount2 = new Account(2, "2", "Jane", "Fern");
+		myAccount3 = new Account(3, "3", "Matt", "Harris");
 	}
 	
-	/*@Test
+	@Test
 	public void addAccountTest() {
 		
 		String myAccString = json.getJSONForObject(myAccount);
@@ -47,7 +47,7 @@ public class AccountServiceTest {
 	@Test
 	public void removeAccountTest() {
 		
-		assertEquals("Your account has been deleted", amr.deleteAccount(myAccount.getAccountNumber()));
+		assertEquals("Your account has been deleted", amr.deleteAccount(myAccount.getId()));
 		assertEquals(false, amr.getAccountMap().containsKey(1));
 	}
 	
@@ -109,5 +109,5 @@ public class AccountServiceTest {
 		
 		assertEquals(2, counter);
 	}
-*/
+
 }
