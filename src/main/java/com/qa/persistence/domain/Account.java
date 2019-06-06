@@ -16,7 +16,7 @@ public class Account {
 	//A last Name
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(length = 100)
 	private String accountNumber;

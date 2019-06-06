@@ -4,6 +4,8 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
 
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,11 +19,13 @@ import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
+@Default
 public class AccountDatabaseRepository implements AccountRepository {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 	
-	JSONUtil json = new JSONUtil();
+	@Inject
+	private JSONUtil json;
 	
 	public String getAllAccounts() {
 		TypedQuery<Account> query = manager.createQuery("SELECT a FROM Account a", Account.class);
@@ -47,7 +51,7 @@ public class AccountDatabaseRepository implements AccountRepository {
 	}
 	@Transactional(REQUIRED)
 	public String updateAccount(int accountNumber, String account) {
-		
+				
 		return null;
 	}
 
