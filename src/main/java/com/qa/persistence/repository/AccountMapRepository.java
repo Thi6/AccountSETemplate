@@ -5,10 +5,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
-
+@Alternative
 public class AccountMapRepository implements AccountRepository{
 	
 
@@ -24,12 +27,15 @@ public class AccountMapRepository implements AccountRepository{
 	//You must complete this section using TDD
 	//You can use the suggested tests or build your own.
 
-	JSONUtil json = new JSONUtil();
+	@Inject 
+	private JSONUtil json;
 	
 	
 	public String getAllAccounts() {
 		return json.getJSONForObject(accountMap);
 	}
+	
+
 
 	public String createAccount(String account) {
 		Account theAccount = json.getObjectForJSON(account, Account.class);
@@ -51,9 +57,11 @@ public class AccountMapRepository implements AccountRepository{
 	}
 
 	public String updateAccount(int id, String account) {
-		
+		Account accToUpdate = json.getObjectForJSON(account, Account.class);
+		accountMap.put(id, accToUpdate);
 		return null;
 	}
+	
 	
 	public Map<Integer, Account> getAccountMap() {
 		return accountMap;
@@ -75,6 +83,14 @@ public class AccountMapRepository implements AccountRepository{
 		}
 		
 		return counter;
+	}
+
+
+
+	public String findAnAccount(int id) {
+		Account anAccount = accountMap.get(id);
+		return json.getJSONForObject(anAccount);
+		
 	}
 
 }
