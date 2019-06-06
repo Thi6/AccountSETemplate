@@ -31,6 +31,8 @@ public class AccountServiceTest {
 	public void addAccountTest() {
 		
 		String myAccString = json.getJSONForObject(myAccount);
+		System.out.println(myAccString);
+		// JSON string {"id":1,"accountNumber":"1","firstName":"Matt","lastName":"Hunt"}
 		assertEquals("Account successfully created.", amr.createAccount(myAccString));
 		
 
